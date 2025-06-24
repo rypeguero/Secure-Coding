@@ -64,10 +64,11 @@ This project shows my ability to assess vulnerabilities, remediate them with sec
 
 ## 🚀 How to Run
 
-1. Import into IntelliJ or Eclipse as a Maven project.
-2. Run `SslServerApplication.java`
-3. Visit: `https://localhost:8443/hash?data=HelloWorld`
-4. Accept the self-signed certificate warning in your browser
+1. Download ZipFile
+2. Import into IntelliJ or Eclipse as a Maven project.
+3. Run `SslServerApplication.java`
+4. Visit: `https://localhost:8443/hash?data=HelloWorld`
+5. Accept the self-signed certificate warning in your browser
 
 ---
 
