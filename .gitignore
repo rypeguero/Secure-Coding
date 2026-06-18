@@ -1,0 +1,26 @@
+# Build output
+target/
+*.class
+*.jar
+*.war
+*.ear
+
+# IDE/editor files
+.idea/
+*.iml
+.classpath
+.project
+.settings/
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Local secrets/certificates
+*.p12
+*.jks
+*.cer
+*.key
+*.pem
+.env
