@@ -1,78 +1,74 @@
-# 🛡️ Artemis Financial - Secure Software Implementation (CS-305)
+# CS 305 Secure Coding Project: SSL Server
 
-This project was developed as part of the CS-305 Secure Software Development course. It demonstrates secure software engineering practices by implementing HTTPS communication with an SSL certificate, vulnerability scanning using OWASP Dependency-Check, and secure RESTful API handling.
+This repository contains a secure coding course project from CS 305. The application is a small Java Spring Boot service for the fictional client **Artemis Financial**. It demonstrates HTTPS configuration, SHA-256 hashing, and dependency vulnerability review using OWASP Dependency-Check.
 
-## 🔍 Project Overview
+## Project Overview
 
-**Client:** Artemis Financial  
-**Objective:** Artemis Financial needed a way to secure their internal Java-based software applications to ensure safe, encrypted communication between client and server systems. The company sought a solution that ensured data confidentiality, integrity, and authenticity via HTTPS and SSL/TLS.
+Artemis Financial needed a way to secure internal software communication between client and server systems. This project focuses on applying secure software practices to improve confidentiality, integrity, and secure configuration.
 
-Our task was to assess their application for vulnerabilities and refactor their code to follow secure software development principles using Java and Spring Boot.
+## What This Project Demonstrates
 
-## ✅ Deliverables
+- HTTPS/TLS configuration for a Spring Boot application
+- SHA-256 hashing through a REST endpoint
+- Maven-based dependency management
+- OWASP Dependency-Check integration
+- Secure repository hygiene by excluding local certificates, compiled artifacts, and IDE metadata
 
-- Implemented HTTPS encryption using `keystore.p12` and self-signed certificate (`sslserver.cer`)
-- Refactored Spring Boot project with HTTPS server configuration (`application.properties`)
-- Implemented SHA-256 hashing and RSA key generation
-- Added OWASP Dependency-Check plugin in `pom.xml` for vulnerability scanning
-- Delivered full working Spring Boot application with SSL
+## Tech Stack
 
-## 🔐 Key Security Practices
+- Java 8
+- Spring Boot
+- Maven
+- OWASP Dependency-Check Maven Plugin
 
-- Enabled HTTPS with self-signed SSL certificate
-- Applied SHA-256 for integrity validation
-- Used RSA for secure key exchange
-- Conducted automated dependency vulnerability scanning
-- Validated HTTPS endpoints via browser and curl tests
+## Main Endpoint
 
-## 🧠 Reflection Questions
+```text
+GET /hash?data=HelloWorld
+```
 
-**1. Who was the client and what problem were they facing?**  
-The client, Artemis Financial, needed their software application to support secure communication protocols to protect customer data. Their system lacked SSL/TLS protection and proper vulnerability analysis.
+Example response:
 
-**2. What did I do well?**  
-I effectively implemented SSL using a Java keystore and verified secure HTTPS connections. I also ensured dependencies were scanned for known vulnerabilities using OWASP's tools. Secure coding is vital for protecting sensitive data, building customer trust, and maintaining system integrity.
+```text
+Data: HelloWorld
+SHA-256 Hash: <generated SHA-256 hash>
+```
 
-**3. Which part was challenging or helpful?**  
-The most challenging part was configuring Spring Boot to serve HTTPS correctly with a custom keystore and ensuring all dependencies passed security checks. This gave me a strong foundation in real-world software hardening.
+## Security Notes
 
-**4. How did I add layers of security?**  
-I configured SSL encryption, implemented strong hashing (SHA-256), and scanned dependencies. In future work, I would use tools like SonarQube, Snyk, or Burp Suite for more advanced vulnerability analysis and mitigation planning.
+The original course submission included local development certificate material and generated build artifacts. Those files were intentionally removed from this public repository because local certificate files, compiled artifacts, and IDE metadata should not normally be committed to GitHub.
 
-**5. How did I validate functionality and security?**  
-I tested the application using web browsers, curl, and unit tests to ensure HTTPS was active and functional. After refactoring, I re-ran all tests and ensured no new vulnerabilities appeared in the scan.
+To run the project locally, create your own development certificate material and keep it outside version control. The `.gitignore` file is configured to avoid committing common local certificate and environment files.
 
-**6. What tools or practices will I reuse?**  
-I will continue using:
-- SSL/TLS with keystores
-- OWASP Dependency-Check
-- Spring Boot secure configuration best practices
-- Git for version control and collaboration
+## Running the Project
 
-**7. What can I show employers from this project?**  
-This project shows my ability to assess vulnerabilities, remediate them with secure code, configure SSL/TLS, and use industry tools for security validation. It's an end-to-end secure software implementation – a strong portfolio artifact for cybersecurity and development roles.
+From the project root:
 
----
+```bash
+mvn spring-boot:run
+```
 
-## 📁 Key Files
+The app runs on:
 
-- `HashController.java` – API controller that implements SHA-256 hashing
-- `SslServerApplication.java` – Main Spring Boot entry point
-- `application.properties` – Server configuration for SSL (port 8443)
-- `pom.xml` – Maven configuration with OWASP dependency plugin
-- `keystore.p12` & `sslserver.cer` – SSL keystore and certificate (private)
+```text
+https://localhost:8443/hash
+```
 
-## 🚀 How to Run
+Because the certificate is self-signed, the browser may show a local development warning.
 
-1. Download ZipFile
-2. Import into IntelliJ or Eclipse as a Maven project.
-3. Run `SslServerApplication.java`
-4. Visit: `https://localhost:8443/hash?data=HelloWorld`
-5. Accept the self-signed certificate warning in your browser
+## Dependency Review
 
----
+The project includes OWASP Dependency-Check in `pom.xml`. To run a dependency scan:
+
+```bash
+mvn dependency-check:check
+```
+
+The generated report is written to the Maven `target/` directory and is not committed to the repository.
+
+## Portfolio Framing
+
+This project demonstrates basic secure coding and application security concepts: HTTPS configuration, hashing, dependency review, certificate handling, and safe repository cleanup before public release.
 
 **Author:** Ryan Peguero  
-**Course:** CS-305 Secure Software Development  
-
-📫 For questions, reach out at [ryan.peguero1@snhu.edu](mailto:ryan.peguero1@snhu.edu)
+**Course:** CS 305 Secure Software Development
